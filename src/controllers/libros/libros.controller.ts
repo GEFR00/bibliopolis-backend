@@ -19,14 +19,12 @@ export class LibrosController {
 
     // Obtener un libro según su ISBN
     @Get(':isbn')
-    obtenerLibro( @Param('isbn') id: string, @Res() res: Response ): void {
-        const libro = this.servicio.obtenerLibroPorISBN(id);
+    obtenerLibro( @Param('isbn') isbn: string, @Res() res: Response ): void {
+        const libro = this.servicio.obtenerLibroPorISBN(isbn);
 
-        if( libro ) {
-            res.status(HttpStatus.OK).json(libro);
-        } else {
+        libro ?
+            res.status(HttpStatus.OK).json(libro) :
             res.status(HttpStatus.NOT_FOUND).send();
-        }
     };
 
     // Obtener todos los libros y permitir filtrar por autor y/o género

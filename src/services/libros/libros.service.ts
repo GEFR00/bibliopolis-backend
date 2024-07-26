@@ -9,9 +9,7 @@ export class LibrosService {
 
     // Crear un nuevo libro, debe verificar que el ISBN no exista.
     crearLibro( libro: Libro ): boolean {
-        const existeLibro = this.libros.find( 
-            lib => lib.isbn == libro.isbn
-        );
+        const existeLibro = this.obtenerLibroPorISBN(libro.isbn);
         
         if(!existeLibro) {
             libro.isbn = (this.libros.length + 1).toString();
